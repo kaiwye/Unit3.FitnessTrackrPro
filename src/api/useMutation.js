@@ -22,12 +22,14 @@ export default function useMutation(method, resource, tagsToInvalidate) {
       });
       setData(result);
       invalidateTags(tagsToInvalidate);
+      return true;
     } catch (e) {
       console.error(e);
       setError(e.message);
     } finally {
       setLoading(false);
     }
+    return false;
   };
 
   return { mutate, data, loading, error };
